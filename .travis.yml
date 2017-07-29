@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "7"
+install:
+    - cp env.dist .env
+    - npm install
+script:
+    - cd src; npm run tests
+after_success: 'npm run coveralls'
