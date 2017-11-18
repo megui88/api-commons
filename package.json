@@ -29,7 +29,8 @@
   ],
   "scripts": {
     "tests": "NODE_ENV=test mocha './tests/**/*.spec.js'; istanbul cover _mocha $(find ./tests -name \"*.spec.js\" -not -path \"./node_modules/*\")",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "prepublish": "yarn run lint && yarn run test && yarn run build"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
