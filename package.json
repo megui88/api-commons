@@ -1,6 +1,6 @@
 {
   "name": "developmentsoftware-api-commons",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "license": "MIT",
   "homepage": "https://developmentsoftware.io",
@@ -23,7 +23,9 @@
   ],
   "main": "./index.js",
   "files": [
-    "src"
+    "src",
+    "index.js",
+    "yarn.lock"
   ],
   "scripts": {
     "tests": "NODE_ENV=test mocha './tests/**/*.spec.js'; istanbul cover _mocha $(find ./tests -name \"*.spec.js\" -not -path \"./node_modules/*\")",
