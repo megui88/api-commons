@@ -1,13 +1,26 @@
 {
   "name": "developmentsoftware-api-commons",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "license": "MIT",
   "homepage": "https://developmentsoftware.io",
-  "author": { "name": "Mariano G. Egui", "email": "egui.mariano@gmail.com", "url": "http://c-inteligente.com.ar" },
-  "repository": { "type": "git", "url": "https://github.com/developmentsoftware/api-commons.git" },
+  "author": {
+    "name": "Mariano G. Egui",
+    "email": "egui.mariano@gmail.com",
+    "url": "http://c-inteligente.com.ar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/developmentsoftware/api-commons.git"
+  },
   "description": "The developmentsoftware organization api commons tools Backend micro-services",
-  "keywords": ["developmentsoftware", "api-commons", "developmentsoftware-api-commons", "backend", "micro-services"],
+  "keywords": [
+    "developmentsoftware",
+    "api-commons",
+    "developmentsoftware-api-commons",
+    "backend",
+    "micro-services"
+  ],
   "main": "./index.js",
   "scripts": {
     "tests": "NODE_ENV=test mocha './tests/**/*.spec.js'; istanbul cover _mocha $(find ./tests -name \"*.spec.js\" -not -path \"./node_modules/*\")",
@@ -19,9 +32,9 @@
     "mongodb": "^2.2.28"
   },
   "devDependencies": {
-    "istanbul": "^0.4.5",
-    "coveralls": "^2.13.1",
     "chai": "^4.0.2",
+    "coveralls": "^2.13.1",
+    "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
     "sinon": "^2.3.5",
     "sinon-chai": "^2.11.0"
