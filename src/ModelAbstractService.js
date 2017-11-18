@@ -1,7 +1,7 @@
 const Promise = require('bluebird');
 const uuidV4 = require('uuid/v4');
 
-class ModelAbtractService {
+class ModelAbstractService {
 
     constructor(collection, storage) {
         this.COLLECTION = collection;
@@ -109,4 +109,4 @@ class ModelAbtractService {
     }
 }
 
-module.exports = ModelAbtractService;
+module.exports = ModelAbstractService;
