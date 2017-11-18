@@ -21,17 +21,17 @@ class StorageService {
      */
     getDB() {
         return new Promise((resolv, reject) => {
-            if (this.db === null) {
-                this.client
-                    .connect(uri)
-                    .then(db => {
-                        this.db = db;
-                        resolv(db)
-                    })
-                    .catch(reject);
-                return
+            if (this.db !== null) {
+                resolv(this.db);
+                return;
             }
-            resolv(this.db)
+            this.client
+                .connect(uri)
+                .then(db => {
+                    this.db = db;
+                    resolv(db)
+                })
+                .catch(reject);
         })
     }
 
