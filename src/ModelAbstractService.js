@@ -6,6 +6,7 @@ class ModelAbstractService {
     constructor(collection, storage) {
         this.COLLECTION = collection;
         this.storage = storage;
+        this.primaryKey = 'id';
     }
 
     all() {
@@ -22,9 +23,11 @@ class ModelAbstractService {
         })
     }
 
-    get(id) {
+    get(value) {
         return new Promise((resolv, reject) => {
-            this.find({id: id})
+            let query = {};
+            query[this.primaryKey] = value;
+            this.find(query)
                 .then(data => {
                     if (0 >= data.length) {
                         reject({
