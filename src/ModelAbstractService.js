@@ -59,6 +59,25 @@ class ModelAbstractService {
     }
 
     create(data) {
+
+        if (typeof data[this.primaryKey] == 'undefined') {
+            return this._create(data)
+        }
+        return new Promise((resolv, reject) => {
+
+            this.get(data[this.primaryKey]).then((object) => {
+                let err = new Error(this.primaryKey + ' already exists.');
+                err.statusCode = 400;
+                reject(err);
+            }).catch(() => {
+                this._create(data).then(resolv).catch(reject);
+            });
+        });
+
+    }
+
+    _create(data) {
+
         return new Promise((resolv, reject) => {
             this.bulkCreate([data])
                 .then(data => {
@@ -66,7 +85,6 @@ class ModelAbstractService {
                 })
                 .catch(reject);
         });
-
     }
 
     update(id, data) {
@@ -78,6 +96,28 @@ class ModelAbstractService {
                         col.updateOne({id: id}, object)
                             .then(() => {
                                 resolv(this.modelMap(object));
+                            })
+                            .catch(reject);
+                    });
+                })
+                .catch(reject);
+        });
+    }
+
+    delete(value) {
+        return new Promise((resolv, reject) => {
+            this.get(value)
+                .then(collection => {
+                    this.storage.getCollection(this.COLLECTION).then(col => {
+                        let query = {};
+                        query[this.primaryKey] = value;
+                        col.deleteOne(query)
+                            .then((resp) => {
+                                if (true != resp.result.ok) return reject({
+                                    status: 500,
+                                    message: 'Not Work'
+                                });
+                                resolv();
                             })
                             .catch(reject);
                     });
