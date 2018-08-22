@@ -1,7 +1,6 @@
-let config = require('dotenv').config().parsed;
 let MongoClient = require('mongodb').MongoClient;
 let Promise = require('bluebird');
-let uri = config.MONGO_URI;
+let uri = process.env.MONGO_URI;
 
 class StorageService {
     /**
