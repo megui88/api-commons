@@ -75,8 +75,11 @@ class ModelAbstractService {
                 .then(collection => {
                     let object = this.modelMap(data, collection);
                     this.storage.getCollection(this.COLLECTION).then(col => {
-                        col.updateOne({id: id}, object)
-                            .then(() => {
+
+                        let query = {};
+                        query[this.primaryKey] = id;
+                        col.updateOne(query, {$set: object})
+                            .then((re) => {
                                 resolv(this.modelMap(object));
                             })
                             .catch(reject);
