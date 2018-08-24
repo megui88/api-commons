@@ -113,6 +113,20 @@ class ModelAbstractService {
             name: data.name || model.name,
         }
     }
+
+    delete(id) {
+        return new Promise((resolv, reject) => {
+            this.get(id)
+                .then((o)=>{
+                    this.storage.getCollection(this.COLLECTION).then(col => {
+                        col.deleteOne({[this.primaryKey]:id})
+                            .then(resolv)
+                            .catch(reject);
+                    });
+                })
+                .catch(reject);
+        });
+    }
 }
 
 module.exports = ModelAbstractService;
